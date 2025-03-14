@@ -1,0 +1,336 @@
+h1 {
+  font-size: 5rem;
+  margin: 0;
+}
+h6 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+
+/* ครอบคลุมทั้ง .nav-link และ .dropdown-toggle */
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-toggle {
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+/* ใช้ ::before แทน ::after เพื่อไม่ชนกับ caret เดิม (ซึ่งเราลบไปแล้ว) */
+.navbar-nav .nav-link::before,
+.navbar-nav .dropdown-toggle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  transition: width 0.3s ease-in-out;
+}
+
+/* เมื่อ hover หรือ active => ขยายความกว้างเป็น 100% */
+.navbar-nav .nav-link:hover::before,
+.navbar-nav .dropdown-toggle:hover::before,
+.navbar-nav .nav-link.active-link::before,
+.navbar-nav .dropdown-toggle.active-link::before {
+  width: 100%;
+}
+
+/* ลบ caret เริ่มต้นของ .dropdown-toggle */
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.about {
+  position: relative;
+  width: 100%;
+  height: 500px; /* กำหนดความสูงของ Section */
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 10%;
+  
+}
+
+.about-content {
+  position: relative;
+  z-index: 2; /* ทำให้ตัวหนังสืออยู่ด้านหน้า */
+  color: white; /* ปรับสีให้มองเห็น */
+  text-align: left;
+  max-width: 60%;
+  
+  /* padding: 20px; */
+}
+.about-content p {
+  line-height: 1.8; /* ปรับระยะห่างระหว่างบรรทัด */
+}
+.about_text {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 20px;
+  width: 50%;
+}
+
+.about-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* อยู่ข้างหลัง `about-content` */
+  pointer-events: none; /* ทำให้คลิกทะลุไปยังข้อความได้ */
+  
+}
+.about-particles #about {
+  width: 100%;
+  height: 500px;
+}
+/* .service-content{
+  text-align: center;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 96px;
+  color: white;
+  opacity: 0.8;
+  user-select: none;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+} */
+.service-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2; /* ทำให้มั่นใจว่ามันอยู่เหนือพื้นหลัง */
+  font-size: 96px;
+  color: white;
+  opacity: 0.8;
+  user-select: none;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  width: auto; /* ป้องกันการขยายเกินขนาด */
+  height: auto;
+}
+
+/* .floating-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.floating-container {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* ✅ ทำให้แน่ใจว่า container มีความสูงเต็มพื้นที่ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* ✅ ป้องกันการเกินของ gradient */
+}
+
+.shape {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  animation: floating 3s infinite ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+  z-index: 2;
+}
+ 
+/* ทำให้แต่ละ shape มีทิศทางการลอยที่แตกต่างกัน */
+.shape:nth-child(2) { scale: 2.5; top: 14%; left: 36%; animation-duration: 3.2s; }
+.shape:nth-child(3) { scale: 2.7; top: 34%; left: 26%; animation-duration: 3s; }
+.shape:nth-child(4) { scale: 2.5; bottom: 25%; left: 30%; animation-duration: 2.8s; }
+.shape:nth-child(5) { scale: 2; top: 37%; right: 26%; animation-duration: 2.9s; }
+.shape:nth-child(6) { scale: 2; top: 10%; right: 33%; animation-duration: 3.5s; }
+.shape:nth-child(7) { scale: 2.5; bottom: 23%; right: 29%; animation-duration: 2.5s;  }
+
+.floor
+{ 
+  /* width: 100px;
+  height: 100px; */
+  position: absolute;
+  padding-top: 30%;
+  /* bottom: 15%;  */
+  z-index: 1;
+}
+
+/* Keyframes สำหรับ Floating Animation */
+@keyframes floating {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+@keyframes expandOnHover {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+/*/////////////////////////////////////////////////////*/
+
+/* Keyframes สำหรับ bg-morphing-gradient */
+@keyframes moveInCircle {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes moveVertical {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(50%); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes moveHorizontal {
+  0% { transform: translateX(-50%) translateY(-10%); }
+  50% { transform: translateX(50%) translateY(10%); }
+  100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+:root {
+  /* --color-bg1: rgb(108, 0, 162);
+  --color-bg2: rgb(0, 17, 82); */
+  --color-bg1: rgb(0, 0, 0);
+  --color-bg2: rgb(0, 0, 0);
+  --color1: 18, 113, 255;
+  --color2: 221, 74, 255;
+  --color3: 100, 220, 255;
+  --color4: 200, 50, 50;
+  --color5: 180, 180, 50;
+  --color-interactive: 140, 100, 255;
+  --circle-size: 80%;
+  --blending: hard-light;
+}
+
+/* .gradient-bg {
+  width: 100vw;
+  height: 100vh;
+  max-height: 800px;
+  position: absolute;
+  overflow: hidden;
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+  top: 0;
+  left: 0;
+  z-index: -1;
+} */
+
+.gradient-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+  z-index: -1; /* ✅ อยู่ข้างหลังทุกอย่าง */
+}
+
+/* svg {
+  display: none;
+} */
+
+/* .gradients-container{
+  filter: url(#goo) blur(80px);
+  width: 100%;
+  height: 100%;
+} */
+
+/* ✅ ขยับ gradient ใน background */
+.gradients-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: url(#goo) blur(80px);
+}
+
+.g1{
+  position: absolute;
+  mix-blend-mode: var(--blending);
+  width: var(  --circle-size);
+  height: var(  --circle-size);
+  top: calc(50% - var(  --circle-size) / 2);
+  left: calc(50% - var(  --circle-size) / 2);
+  background: radial-gradient(circle at center, rgba(var(--color1), 0.8), rgba(var(--color1), 0) 50%) no-repeat;
+  transform-origin: center center;
+  animation: moveVertical 30s ease infinite;
+  opacity: 1;
+}
+
+.g2{
+  position: absolute;
+  mix-blend-mode: var(--blending);
+  width: var(  --circle-size);
+  height: var(  --circle-size);
+  top: calc(50% - var(  --circle-size) / 2);
+  left: calc(50% - var(  --circle-size) / 2);
+  background: radial-gradient(circle at center, rgba(var(--color2), 0.8), rgba(var(--color2), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 400px);
+  animation: moveInCircle 20s reverse infinite;
+  opacity: 1;
+}
+.g3{
+  position: absolute;
+  mix-blend-mode: var(--blending);
+  width: var(  --circle-size);
+  height: var(  --circle-size);
+  top: calc(50% - var(  --circle-size) / 2 + 200px);
+  left: calc(50% - var(  --circle-size) / 2 - 500px);
+  background: radial-gradient(circle at center, rgba(var(--color3), 0.8), rgba(var(--color3), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 400px);
+  animation: moveInCircle 40s linear infinite;
+  opacity: 1;
+}
+.g4{
+  position: absolute;
+  mix-blend-mode: var(--blending);
+  width: var(  --circle-size);
+  height: var(  --circle-size);
+  top: calc(50% - var(  --circle-size) / 2 + 200px);
+  left: calc(50% - var(  --circle-size) / 2 - 500px);
+  background: radial-gradient(circle at center, rgba(var(--color4), 0.8), rgba(var(--color4), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 200px);
+  animation: moveHorizontal 40s ease infinite;
+  opacity: 0.7;
+}
+.g5{
+  position: absolute;
+  mix-blend-mode: var(--blending);
+  width: var(  --circle-size * 2);
+  height: var(  --circle-size * 2);
+  top: calc(50% - var(  --circle-size));
+  left: calc(50% - var(  --circle-size));
+  background: radial-gradient(circle at center, rgba(var(--color5), 0.8), rgba(var(--color5), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 800px) calc(50% + 200px);
+  animation: moveInCircle 20s ease infinite;
+  opacity: 1;
+}
+
+.interactive {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+  opacity: 0.7;
+  /* display: inline-block; */
+  /* cursor: pointer; */
+  /* color: white; */
+  /* font-size: 2rem; */
+  /* font-weight: bold; */
+  /* padding: 10px 20px; */
+  /* border: 2px solid white; */
+  /* border-radius: 5px; */
+  /* margin-top: 20px; */
+  /* transition: color 0.3s, background 0.3s; */
+}
+
